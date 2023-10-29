@@ -86,6 +86,7 @@
             <groupId>plugin</groupId>
             <artifactId>panadero-core</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
