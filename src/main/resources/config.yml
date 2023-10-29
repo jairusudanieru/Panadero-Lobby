@@ -1,0 +1,18 @@
+config:
+  lobbyWorld: lobby
+  voidYLevel: -64
+
+location:
+  authLocation: location
+  spawnLocation: location
+  survivalLocation: location
+  creativeLocation: location
+  pvpArenaLocation: location
+
+message:
+  reloadMessage: "Configuration successfully reloaded"
+  invalidCommand: "Invalid command usage!"
+  senderNotPlayer: "You must be a player to execute this command!"
+  playerNotFound: "Can't find that player. Please try again!"
+  locationNotFound: "Can't find the location. Please try again!"
+  locationSetMessage: "%location% successfully set"

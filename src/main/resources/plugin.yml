@@ -1,0 +1,15 @@
+name: Panadero-Lobby
+version: '${project.version}'
+main: plugin.panaderolobby.Panadero_Lobby
+api-version: '1.20'
+
+commands:
+  lobby:
+    description: lobby
+  spawn:
+    description: spawn
+    aliases:
+      - hub
+  setlocation:
+    description: setlocation
+    permission: op
