@@ -15,7 +15,7 @@ public class Lobby implements TabCompleter, CommandExecutor {
 
    @Override
    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-      if (sender.isOp()) return Arrays.asList("ping");
+      if (!sender.isOp()) return Arrays.asList("ping");
       if (args.length != 1) return new ArrayList<>();
       return Arrays.asList("reload","ping");
    }

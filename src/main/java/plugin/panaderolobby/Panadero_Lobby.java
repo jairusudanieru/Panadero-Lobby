@@ -17,4 +17,5 @@ public final class Panadero_Lobby extends JavaPlugin {
     @Override
     public void onDisable() {
     }
+
 }
