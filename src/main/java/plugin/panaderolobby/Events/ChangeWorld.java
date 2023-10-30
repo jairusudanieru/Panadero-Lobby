@@ -31,7 +31,7 @@ public class ChangeWorld implements Listener {
             if (!worldGroup.contains(onlinePlayer.getWorld().getName())) continue;
             player.showPlayer(LobbyConfig.plugin, onlinePlayer);
             onlinePlayer.showPlayer(LobbyConfig.plugin, player);
-            sendJoinMessage(player, playerWorld);
+            sendJoinMessage(player, playerWorld, onlinePlayer);
          }
       }
 
@@ -40,7 +40,7 @@ public class ChangeWorld implements Listener {
             if (!fromGroup.contains(onlinePlayer.getWorld().getName())) continue;
             player.hidePlayer(LobbyConfig.plugin, onlinePlayer);
             onlinePlayer.hidePlayer(LobbyConfig.plugin, player);
-            sendQuitMessage(player, previousWorld);
+            sendQuitMessage(player, previousWorld, onlinePlayer);
          }
       }
    }
@@ -52,32 +52,28 @@ public class ChangeWorld implements Listener {
       return worldGroup.contains(world.getName());
    }
 
-   private void sendJoinMessage(Player player, World world) {
+   private void sendJoinMessage(Player player, World world, Player onlinePlayer) {
       List<String> worldGroup = WorldGroups.sameGroupWorlds(world);
       if (!AuthMeApi.getInstance().isAuthenticated(player)) return;
       String joinMessage = CoreConfig.getString("message.joinMessage");
       if (joinMessage == null || joinMessage.isEmpty()) return;
       joinMessage = joinMessage.replace("%player%",player.getName());
 
-      for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-         if (!worldGroup.contains(onlinePlayer.getWorld().getName())) continue;
-         if (isLobbyWorld(world)) continue;
-         onlinePlayer.sendMessage(LobbyConfig.text(joinMessage));
-      }
+      if (!worldGroup.contains(onlinePlayer.getWorld().getName())) return;
+      if (isLobbyWorld(world)) return;
+      onlinePlayer.sendMessage(LobbyConfig.text(joinMessage));
    }
 
-   private void sendQuitMessage(Player player, World world) {
+   private void sendQuitMessage(Player player, World world, Player onlinePlayer) {
       List<String> worldGroup = WorldGroups.sameGroupWorlds(world);
       if (!AuthMeApi.getInstance().isAuthenticated(player)) return;
       String quitMessage = CoreConfig.getString("message.quitMessage");
       if (quitMessage == null || quitMessage.isEmpty()) return;
       quitMessage = quitMessage.replace("%player%",player.getName());
 
-      for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-         if (!worldGroup.contains(onlinePlayer.getWorld().getName())) continue;
-         if (isLobbyWorld(world)) continue;
-         onlinePlayer.sendMessage(LobbyConfig.text(quitMessage));
-      }
+      if (!worldGroup.contains(onlinePlayer.getWorld().getName())) return;
+      if (isLobbyWorld(world)) return;
+      onlinePlayer.sendMessage(LobbyConfig.text(quitMessage));
    }
 
 }

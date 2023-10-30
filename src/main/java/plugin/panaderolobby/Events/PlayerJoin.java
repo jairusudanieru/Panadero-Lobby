@@ -17,7 +17,7 @@ public class PlayerJoin implements Listener {
       sendPlayerToAuth(player);
       for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
          player.hidePlayer(LobbyConfig.plugin, onlinePlayer);
-         onlinePlayer.hidePlayer(LobbyConfig.plugin, onlinePlayer);
+         onlinePlayer.hidePlayer(LobbyConfig.plugin, player);
       }
    }
 
