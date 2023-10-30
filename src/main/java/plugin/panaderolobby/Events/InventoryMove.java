@@ -83,21 +83,18 @@ public class InventoryMove implements Listener {
             Location location = LobbyConfig.getLocation("location.creativeLocation");
             if (location == null) return;
             player.teleport(location);
-            player.sendMessage("Teleported to Creative!");
             Bukkit.getScheduler().runTask(LobbyConfig.plugin, () -> player.closeInventory());
          } else if (event.getSlot() == 13) {
             event.setCancelled(true);
             Location location = LobbyConfig.getLocation("location.survivalLocation");
             if (location == null) return;
             player.teleport(location);
-            player.sendMessage("Teleported to Survival!");
             Bukkit.getScheduler().runTask(LobbyConfig.plugin, () -> player.closeInventory());
          } else if (event.getSlot() == 16) {
             event.setCancelled(true);
             Location location = LobbyConfig.getLocation("location.pvpArenaLocation");
             if (location == null) return;
             player.teleport(location);
-            player.sendMessage("Teleported to PVP Arena!");
             Bukkit.getScheduler().runTask(LobbyConfig.plugin, () -> player.closeInventory());
          }
       }

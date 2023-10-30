@@ -1,7 +1,7 @@
 package plugin.panaderolobby.Events;
 
+import fr.xephi.authme.api.v3.AuthMeApi;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -48,8 +48,8 @@ public class PlayerInteract implements Listener {
       List<String> worldGroup = WorldGroups.sameGroupWorlds(player.getWorld());
       for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
          if (!worldGroup.contains(onlinePlayer.getWorld().getName())) continue;
+         if (!AuthMeApi.getInstance().isAuthenticated(onlinePlayer)) continue;
          player.showPlayer(LobbyConfig.plugin, onlinePlayer);
-         onlinePlayer.showPlayer(LobbyConfig.plugin, player);
       }
    }
 
@@ -58,7 +58,6 @@ public class PlayerInteract implements Listener {
       for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
          if (!worldGroup.contains(onlinePlayer.getWorld().getName())) continue;
          player.hidePlayer(LobbyConfig.plugin, onlinePlayer);
-         onlinePlayer.hidePlayer(LobbyConfig.plugin, player);
       }
    }
 

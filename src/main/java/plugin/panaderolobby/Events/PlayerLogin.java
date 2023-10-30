@@ -14,6 +14,7 @@ import plugin.panaderolobby.Methods.LobbyConfig;
 import plugin.panaderolobby.Methods.LobbyItem;
 
 import java.util.List;
+import java.util.Objects;
 
 public class PlayerLogin implements Listener {
 
@@ -33,8 +34,10 @@ public class PlayerLogin implements Listener {
       List<String> worldGroup = WorldGroups.sameGroupWorlds(world);
       for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
          if (!worldGroup.contains(onlinePlayer.getWorld().getName())) continue;
-         onlinePlayer.showPlayer(LobbyConfig.plugin, player);
+         if (!AuthMeApi.getInstance().isAuthenticated(onlinePlayer)) continue;
          player.showPlayer(LobbyConfig.plugin, onlinePlayer);
+         if (Objects.equals(onlinePlayer.getInventory().getItem(8), LobbyItem.GRAY_DYE())) continue;
+         onlinePlayer.showPlayer(LobbyConfig.plugin, player);
       }
    }
 
