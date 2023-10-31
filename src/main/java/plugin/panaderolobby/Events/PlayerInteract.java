@@ -2,6 +2,7 @@ package plugin.panaderolobby.Events;
 
 import fr.xephi.authme.api.v3.AuthMeApi;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -42,6 +43,17 @@ public class PlayerInteract implements Listener {
       } else if (item.equals(LobbyItem.INFO_BOOK())) {
          player.sendMessage(LobbyConfig.text("<reset>Welcome To Pandesal!"));
       }
+   }
+
+   @EventHandler
+   public void onPlayerTouch(PlayerInteractEvent event) {
+      World lobbyWorld = LobbyConfig.getWorld("config.lobbyWorld");
+      if (lobbyWorld == null) return;
+      Player player = event.getPlayer();
+      if (!player.getWorld().equals(lobbyWorld)) return;
+      if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+      if (player.getGameMode().equals(GameMode.CREATIVE)) return;
+      event.setCancelled(true);
    }
 
    private void showOthers(Player player) {

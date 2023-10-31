@@ -13,8 +13,9 @@ public class Startup {
 
    public static void registerEvents() {
       Bukkit.getPluginManager().registerEvents(new ChangeWorld(), LobbyConfig.plugin);
-      Bukkit.getPluginManager().registerEvents(new PlayerInteract(), LobbyConfig.plugin);
       Bukkit.getPluginManager().registerEvents(new InventoryMove(), LobbyConfig.plugin);
+      Bukkit.getPluginManager().registerEvents(new LaunchPads(), LobbyConfig.plugin);
+      Bukkit.getPluginManager().registerEvents(new PlayerInteract(), LobbyConfig.plugin);
       Bukkit.getPluginManager().registerEvents(new PlayerJoin(), LobbyConfig.plugin);
       Bukkit.getPluginManager().registerEvents(new PlayerLogin(), LobbyConfig.plugin);
       Bukkit.getPluginManager().registerEvents(new PlayerLogout(), LobbyConfig.plugin);
